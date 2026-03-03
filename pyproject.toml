@@ -1,0 +1,36 @@
+[project]
+name = "apk-find"
+version = "0.1.0"
+description = "FORGE plugin: search Chainguard APK repositories for packages"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Chainguard Field Engineering" }
+]
+dependencies = [
+    "forge-core>=0.1.0",
+    "requests>=2.32",
+    "rich>=13.0",
+]
+
+[project.entry-points."forge.plugins"]
+apk-find = "apk_find.plugin:create_plugin"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/apk_find"]
+
+[tool.uv.sources]
+forge-core = { path = "../forge/packages/forge-core" }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-mock>=3.14",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
