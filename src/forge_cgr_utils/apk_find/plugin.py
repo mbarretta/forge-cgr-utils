@@ -12,8 +12,8 @@ from forge_core.auth import get_chainctl_token
 from forge_core.context import ExecutionContext
 from forge_core.plugin import ResultStatus, ToolParam, ToolPlugin, ToolResult
 
-from apk_find.repos import REPOS, ARCHITECTURES
-from apk_find.searcher import MatchType, SearchConfig, SearchResult, search
+from forge_cgr_utils.apk_find.repos import REPOS, ARCHITECTURES
+from forge_cgr_utils.apk_find.searcher import MatchType, SearchConfig, SearchResult, search
 
 _REPO_CHOICES = list(REPOS.keys()) + ["all"]
 _ARCH_CHOICES = ARCHITECTURES + ["all"]

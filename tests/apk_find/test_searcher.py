@@ -7,8 +7,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from apk_find.repos import PackageEntry, Repo, parse_apkindex
-from apk_find.searcher import MatchType, SearchConfig, SearchResult, search
+from forge_cgr_utils.apk_find.repos import PackageEntry, Repo, parse_apkindex
+from forge_cgr_utils.apk_find.searcher import MatchType, SearchConfig, SearchResult, search
 
 
 SAMPLE_APKINDEX = textwrap.dedent("""\
@@ -108,7 +108,7 @@ class TestSearch:
         )
 
     def _patched_load(self, text: str):
-        return patch("apk_find.searcher.load_apkindex", return_value=text)
+        return patch("forge_cgr_utils.apk_find.searcher.load_apkindex", return_value=text)
 
     def test_exact_match(self):
         with self._patched_load(SAMPLE_APKINDEX):
@@ -158,7 +158,7 @@ class TestSearch:
                 raise PermissionError("auth required")
             return SAMPLE_APKINDEX
 
-        with patch("apk_find.searcher.load_apkindex", side_effect=mock_load):
+        with patch("forge_cgr_utils.apk_find.searcher.load_apkindex", side_effect=mock_load):
             results = search(config)
 
         repos_in_results = {r.package.repo for r in results}
@@ -179,7 +179,7 @@ class TestSearch:
             repos=["wolfi"],
             arch=None,  # all arches
         )
-        with patch("apk_find.searcher.load_apkindex", return_value=SAMPLE_APKINDEX):
+        with patch("forge_cgr_utils.apk_find.searcher.load_apkindex", return_value=SAMPLE_APKINDEX):
             results = search(config)
         arches = {r.package.arch for r in results if r.package.name == "python3"}
         assert "x86_64" in arches

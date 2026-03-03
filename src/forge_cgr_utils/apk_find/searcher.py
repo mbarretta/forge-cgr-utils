@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Callable
 
-from apk_find.repos import (
+from forge_cgr_utils.apk_find.repos import (
     ARCHITECTURES,
     REPOS,
     Repo,
