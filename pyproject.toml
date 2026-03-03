@@ -24,7 +24,7 @@ build-backend = "hatchling.build"
 packages = ["src/forge_cgr_utils"]
 
 [tool.uv.sources]
-forge-core = { path = "../forge/packages/forge-core" }
+forge-core = { git = "https://github.com/mbarretta/forge.git", subdirectory = "packages/forge-core" }
 
 [dependency-groups]
 dev = [
